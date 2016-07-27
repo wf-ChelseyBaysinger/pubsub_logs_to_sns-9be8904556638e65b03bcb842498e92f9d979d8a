@@ -1,0 +1,9 @@
+project: pubsub 
+language: pubsub
+
+script:
+  - npm pack
+
+artifacts:
+  docker:
+  - /cloudops-highio*.tgz

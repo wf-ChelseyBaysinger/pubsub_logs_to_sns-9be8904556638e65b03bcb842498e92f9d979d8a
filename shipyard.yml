@@ -1,0 +1,21 @@
+base: 'ubuntu/trusty'
+
+apt:
+  packages:
+    - nodejs
+    - npm
+
+after_install:
+  - npm install /build/smithy/cloudops-highio*.tgz
+  - ln -s /usr/bin/nodejs /usr/bin/node
+  - npm run-script /node_modules/cloudops-highio/node_modules/geoip-lite/ updatedb
+  - echo ""
+
+expose:
+  - 8080
+
+user: daemon
+
+workdir: /node_modules/cloudops-highio
+
+cmd: ["nodejs", "server.js"]
